@@ -1,0 +1,23 @@
+{
+  "name": "e-commers-apis",
+  "version": "1.0.0",
+  "description": "APIs for E-Commers Application",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nilesh-Patil0310/E-Commers-APIs.git"
+  },
+  "author": "Nilesh Patil",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Nilesh-Patil0310/E-Commers-APIs/issues"
+  },
+  "homepage": "https://github.com/Nilesh-Patil0310/E-Commers-APIs#readme",
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}

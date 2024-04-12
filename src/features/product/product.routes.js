@@ -1,6 +1,7 @@
 // import express
 import express from "express";
 import ProductController from "./product.controller.js";
+import {upload} from '../../middlwares/fileuplod.multer.js'
 // Initialize Product
 const ProductRouter = express.Router();
 
@@ -11,7 +12,7 @@ const productController = new ProductController();
 ProductRouter.get('/', productController.getAllProduct);
 
 // add new product
-ProductRouter.post('/', productController.addProduct);
+ProductRouter.post('/',upload.single('imageUrl'), productController.addProduct);
 
 
 export default ProductRouter;

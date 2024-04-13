@@ -4,6 +4,7 @@ import bodyParser from 'body-parser'
 import ProductRouter from "./src/features/product/product.routes.js";
 import userRouter from "./src/features/user/user.routes.js";
 import jwtAuth from "./src/middlwares/jwt.middlware.js";
+import cartItemRouter from "./src/features/cart/cartItem.routes.js";
 
 // 2. create server
 const server = express();
@@ -15,6 +16,9 @@ server.use('/api/product',jwtAuth, ProductRouter)
 
 // 2.2 for all request related to users
 server.use('/api/users', userRouter);
+
+// 2.3 for all request related to cartitems are here
+server.use('/api/cartitems',jwtAuth, cartItemRouter)
 
 // 3. Default requiest handeler
 server.get('/', (req,res)=>{

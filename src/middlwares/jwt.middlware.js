@@ -14,6 +14,7 @@ const jwtAuth = (req, res, next)=>{
             "IPO2fWYvk70Y3G2ZJc01ICXcWIQeSw21"
         );
         console.log(payload);
+        req.userID = payload.userID;
     } catch(err){
         // 4. return error.
         console.log(err);

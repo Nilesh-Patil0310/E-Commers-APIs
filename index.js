@@ -3,6 +3,7 @@ import express from "express";
 import bodyParser from 'body-parser'
 import ProductRouter from "./src/features/product/product.routes.js";
 import userRouter from "./src/features/user/user.routes.js";
+import jwtAuth from "./src/middlwares/jwt.middlware.js";
 
 // 2. create server
 const server = express();
@@ -10,7 +11,7 @@ server.use(express.json())
 server.use(bodyParser.json());
 
 // 2.1 for all request related to product are here
-server.use('/api/product', ProductRouter)
+server.use('/api/product',jwtAuth, ProductRouter)
 
 // 2.2 for all request related to users
 server.use('/api/users', userRouter);

@@ -10,6 +10,9 @@ const productController = new ProductController();
 // All the path to the product controller methods
 // fetch all products
 
+// post rate product 
+ProductRouter.post('/rate', productController.rateProducts);
+
 // get fillter products
 ProductRouter.get("/filter", productController.filterProducts);
 

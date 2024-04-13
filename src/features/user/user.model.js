@@ -39,7 +39,7 @@ export default class UserModel {
       id: 1,
       name: 'Seller User',
       email: 'seller@ecom.com',
-      password: 'Password1',
+      password: 'Password',
       type: 'seller',
     },
     {

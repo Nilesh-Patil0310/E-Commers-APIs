@@ -1,0 +1,3 @@
+{"level":"info","message":"/api/cartitems - {}","service":"request-logging"}
+{"level":"info","message":"/api/cartitems - {}","service":"request-logging"}
+{"level":"info","message":"/api/product - {}","service":"request-logging"}

@@ -10,6 +10,7 @@ import cartItemRouter from "./src/features/cart/cartItem.routes.js";
 import apiDocs from "./swagger.json" assert { type: "json" };
 import cors from "cors";
 import loggerMiddleware from "./src/middlwares/logger.middleware.js";
+import { ApplicationError } from "./src/error-handler/application.error.js";
 // 2. create server
 const server = express();
 
@@ -49,6 +50,15 @@ server.use("/api/cartitems", jwtAuth, cartItemRouter);
 server.get("/", (req, res) => {
   res.send("Wellcome to E-commers APIs");
 });
+
+// Error handeler middleware
+server.use((err, req, res, next)=>{
+    console.log(err);
+    if(err instanceof ApplicationError){
+        res.status(err.code).send(err.message);
+    }
+    res.status(500).send('Something went wrong, please try later');
+})
 
 // handel the all incorrect APIS here
 server.use((req, res) => {

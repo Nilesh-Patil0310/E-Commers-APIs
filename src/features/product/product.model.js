@@ -1,3 +1,4 @@
+import { ApplicationError } from "../../error-handler/application.error.js";
 import UserModel from "../user/user.model.js";
 
 export default class ProductModel {
@@ -40,13 +41,13 @@ export default class ProductModel {
     // validate user and product
     const user = UserModel.getAll().find((u) => u.id == userID);
     if (!user) {
-      return "user not found";
+      throw new ApplicationError("user not found",404);
     }
   
     // validate product
     const product = products.find((p) => p.id == productID);
     if (!product) {
-      return "product not found";
+      throw new ApplicationError("product not found",400);
     }
   
     // Initialize product ratings if it doesn't exist

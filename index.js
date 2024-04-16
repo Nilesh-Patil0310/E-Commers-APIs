@@ -1,6 +1,8 @@
 // 1. import express
+import './env.js'
 import express from "express";
 import swagger from "swagger-ui-express";
+
 
 import bodyParser from "body-parser";
 import ProductRouter from "./src/features/product/product.routes.js";
@@ -11,8 +13,11 @@ import apiDocs from "./swagger.json" assert { type: "json" };
 import cors from "cors";
 import loggerMiddleware from "./src/middlwares/logger.middleware.js";
 import { ApplicationError } from "./src/error-handler/application.error.js";
+import {connectToMongoDB} from "./src/config/mongodb.js";
 // 2. create server
 const server = express();
+
+ 
 
 // CORS police configiration
 var corsOptions = {
@@ -72,4 +77,5 @@ server.use((req, res) => {
 // 4. Specify port
 server.listen(3200, () => {
   console.log("Server is running at:3200");
+  connectToMongoDB();
 });

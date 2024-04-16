@@ -11,25 +11,31 @@ const productController = new ProductController();
 // fetch all products
 
 // post rate product 
-ProductRouter.post('/rate', productController.rateProducts);
+ProductRouter.post('/rate', (req,res,next)=>{
+  productController.rateProducts(req,res,next)
+});
 
 // get fillter products
-ProductRouter.get("/filter", productController.filterProducts);
+ProductRouter.get("/filter", (req,res)=>{
+  productController.filterProducts(req,res)});
 
-ProductRouter.get("/", productController.getAllProduct);
+ProductRouter.get("/", (req,res)=>{
+  productController.getAllProduct(req,res)});
 
 // add new product
 ProductRouter.post(
   "/",
   upload.single("imageUrl"),
-  productController.addProduct
+  (req,res)=>{
+    productController.addProduct(req,res)}
 );
 
 // get fillter products
 // ProductRouter.get("/filter", productController.filterProducts);
 
 // get one product
-ProductRouter.get("/:id", productController.getOneProduct);
+ProductRouter.get("/:id", (req,res)=>{
+  productController.getOneProduct(req,res)});
 
 
 

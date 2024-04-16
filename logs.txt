@@ -58,3 +58,12 @@
 {"level":"info","message":"/api/product/rate - {\"productID\":\"661d65a0da7106060e700d43\",\"rating\":3.6}","service":"request-logging"}
 {"level":"info","message":"/api/product/rate - {\"productID\":\"661d65a0da7106060e700d43\",\"rating\":3.6}","service":"request-logging"}
 {"level":"info","message":"/api/product/rate - {\"productID\":\"661d65a0da7106060e700d43\",\"rating\":3.6}","service":"request-logging"}
+{"level":"info","message":"/api/product/rate - {\"productID\":\"661d65a0da7106060e700d43\",\"quantity\":2}","service":"request-logging"}
+{"level":"info","message":"/api/product/rate - {\"productID\":\"661d65a0da7106060e700d43\",\"rating\":3.2}","service":"request-logging"}
+{"level":"info","message":"/api/cartitems - {\"productID\":\"661d65a0da7106060e700d43\",\"quantity\":2}","service":"request-logging"}
+{"level":"info","message":"/api/cartitems - {\"productID\":\"661d65a0da7106060e700d43\",\"quantity\":2}","service":"request-logging"}
+{"level":"info","message":"/api/cartitems - {\"productID\":\"661d65a0da7106060e700d43\",\"quantity\":2}","service":"request-logging"}
+{"level":"info","message":"/api/cartitems - {\"productID\":\"661d65a0da7106060e700d43\",\"quantity\":2}","service":"request-logging"}
+{"level":"info","message":"/api/cartitems - {\"productID\":\"661d65a0da7106060e700d43\",\"quantity\":2}","service":"request-logging"}
+{"level":"info","message":"/api/cartitems - {}","service":"request-logging"}
+{"level":"info","message":"/api/cartitems - {}","service":"request-logging"}

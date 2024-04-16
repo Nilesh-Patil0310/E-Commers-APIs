@@ -1,18 +1,32 @@
 import CartItemModel from "./cartItem.model.js";
+import CartItemRepository from "./cartItems.repository.js";
 export default class CartItemController{
-    addCart(req,res){
-        const {productID, quantity} = req.query;
+    constructor(){
+        this.cartItemRepository = new CartItemRepository();
+    }
+    async addCart(req,res){
+        try{
+        const {productID, quantity} = req.body;
         const userID = req.userID;
-        CartItemModel.add(productID,userID,quantity)
+        await this.cartItemRepository.addToCart(productID,userID,quantity)
         res.status(201).send('cart is updated')
+        }catch (err) {
+            console.log(err);
+            return res.status(400).send("something went wrong");
+          }
     }
 
-    getCartItems(req,res){
+    async getCartItems(req,res){
+        try{
         const userID = req.userID;
 
-        const items = CartItemModel.get(userID);
+        const items = await this.cartItemRepository.getcartItem(userID);
 
         return res.status(200).send(items);
+        }catch (err) {
+            console.log(err);
+            return res.status(400).send("something went wrong");
+          }
     }
 
     deleteItem(req,res){

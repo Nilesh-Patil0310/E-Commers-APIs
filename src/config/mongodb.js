@@ -19,9 +19,9 @@ export const getDB = ()=>{
 }
 
 const createCounter = async(db)=>{
-  const existingCounter=await db.collection("counters").findOne({_id:'cartItemId'});
+  const existingCounter = await db.collection("counters").findOne({_id:'cartItemId'});
   if(!existingCounter){
-      await db.collection("counters").insertOne({_id:'cartItemId', value:0});
+     await db.collection("counters").insertOne({_id:'cartItemId', value:0});
   }
 }
 

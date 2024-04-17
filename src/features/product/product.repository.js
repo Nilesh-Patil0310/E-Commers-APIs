@@ -42,30 +42,27 @@ class ProductRepository {
       throw new ApplicationError("Something went wrong", 500);
     }
   }
+    // Product should have min price specified and category
+  async filter(minPrice, categories){
+    try{
+        const db = getDB();
+        const collection = db.collection(this.collection); 
+        let filterExpression={};
+        if(minPrice){
+            filterExpression.price = {$gte: parseFloat(minPrice)}
+        }
+        categories = JSON.parse(categories.replace(/'/g,'"'));
+        if(categories){
+            filterExpression={$and:[{category:{$in: categories}}, filterExpression]}
+            // filterExpression.category=category
+        }
+        return collection.find(filterExpression).toArray();
 
-  async filter(minPrice, maxPrice, category) {
-    try {
-      const db = getDB();
-      const collection = db.collection(this.collection);
-      let filterExpression = {};
-      if (minPrice) {
-        filterExpression.price = { $gte: parseFloat(minPrice) };
-      }
-      if (maxPrice) {
-        filterExpression.price = {
-          ...filterExpression.price,
-          $lte: parseFloat(maxPrice),
-        };
-      }
-      if (category) {
-        filterExpression.category = category;
-      }
-
-      return await collection.find(filterExpression).toArray();
-    } catch (err) {
-      throw new ApplicationError("Something went wrong", 500);
+    }catch(err){
+        console.log(err);
+        throw new ApplicationError("Something went wrong with database", 500);    
     }
-  }
+}
 
   //   async rate(userID, productID, rating) {
   //     try {

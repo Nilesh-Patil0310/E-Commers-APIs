@@ -17,13 +17,14 @@ export default class ProductController {
 
   async addProduct(req, res) {
     try {
-      const { name, price, sizes } = req.body;
+      const { name, price, sizes,desc,category } = req.body;
+      console.log(name,price,sizes)
       const newProduct = new ProductModel(
         name,
-        null,
+        desc,
         parseFloat(price),
         req.file.filename,
-        null,
+        category,
         sizes.split(",")
       );
 
@@ -69,17 +70,14 @@ export default class ProductController {
   }
 
   async filterProducts(req, res) {
-    try {
-      const minPrice = parseFloat(req.query.minPrice);
-      const maxPrice = parseFloat(req.query.maxPrice);
-      const category = req.query.category;
-      console.log(req.query);
+    try{  
+      const minPrice = req.query.minPrice;
+      // const maxPrice = req.query.maxPrice;
+      const categories = req.query.categories;
       const result = await this.productRepository.filter(
         minPrice,
-        maxPrice,
-        category
+        categories
       );
-      console.log(result);
       res.status(200).send(result);
     } catch (err) {
       console.log(err);

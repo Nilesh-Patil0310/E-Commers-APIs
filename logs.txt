@@ -144,3 +144,6 @@
 {"level":"info","message":"/api/product/filter?categories=[%27cat1%27,%27cat2%27,]&minPrice=40000 - {}","service":"request-logging"}
 {"level":"info","message":"/api/product/filter?categories=[%27cat1%27,%27cat2%27]&minPrice=40000 - {}","service":"request-logging"}
 {"level":"info","message":"/api/product/filter?categories=[%27cat1%27,%27cat2%27]&minPrice=40000 - {}","service":"request-logging"}
+{"level":"info","message":"/api/product/filter?categories=[%27cat1%27,%27cat2%27]&minPrice=40000 - {}","service":"request-logging"}
+{"level":"info","message":"/api/product/filter?categories=[%27cat1%27,%27cat2%27]&minPrice=40000 - {}","service":"request-logging"}
+{"level":"info","message":"/api/product/filter?categories=[%27cat1%27,%27cat2%27]&minPrice=40000 - {}","service":"request-logging"}

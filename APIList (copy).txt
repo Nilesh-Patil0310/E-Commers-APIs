@@ -1,6 +1,0 @@
-1. Product COntroller
-   Get Products 
-   Add Products
-   Get one Product
-   Rate Product
-   

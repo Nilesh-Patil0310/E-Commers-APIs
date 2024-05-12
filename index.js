@@ -1,7 +1,7 @@
 // 1. import express
 import './env.js'
 import express from "express";
-import swagger from "swagger-ui-express";
+import swagger, { serve } from "swagger-ui-express";
 
 
 import bodyParser from "body-parser";
@@ -16,6 +16,7 @@ import loggerMiddleware from "./src/middlwares/logger.middleware.js";
 import { ApplicationError } from "./src/error-handler/application.error.js";
 import {connectToMongoDB} from "./src/config/mongodb.js";
 import { connectUsingMongoose } from './src/config/mongoose.js';
+import likeRouter from './src/features/like/likes.router.js';
 // 2. create server
 const server = express();
 
@@ -56,6 +57,8 @@ server.use("/api/cartitems", jwtAuth, cartItemRouter);
 // 2.4 for all routes related to orders are here
 server.use("/api/orders", jwtAuth, orderRouter)
 
+// 2.5 for all routes related to likes are here
+server.use("/api/like", jwtAuth, likeRouter)
 // 3. Default requiest handeler
 server.get("/", (req, res) => {
   res.send("Wellcome to E-commers APIs");

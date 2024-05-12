@@ -330,3 +330,19 @@
 {"level":"info","message":"/api/product - {\"name\":\"Amazone kindle\",\"price\":50000,\"desc\":\"E-book reader by Amazone\",\"categories\":[\"663c9db77e59628304c6fcf4\",\"663c9db77e59628304c6fcf6\"]}","service":"request-logging"}
 {"level":"info","message":"/api/product - {\"name\":\"Amazone kindle\",\"price\":50000,\"desc\":\"E-book reader by Amazone\",\"categories\":[\"663c9db77e59628304c6fcf4\",\"663c9db77e59628304c6fcf6\"]}","service":"request-logging"}
 {"level":"info","message":"/api/product - {\"name\":\"Amazone kindle\",\"price\":50000,\"desc\":\"E-book reader by Amazone\",\"categories\":[\"663c9db77e59628304c6fcf4\",\"663c9db77e59628304c6fcf6\"]}","service":"request-logging"}
+{"level":"info","message":"/api/product - {\"name\":\"Amazone kindle\",\"price\":50000,\"desc\":\"E-book reader by Amazone\",\"categories\":[\"663c9db77e59628304c6fcf4\",\"663c9db77e59628304c6fcf6\"]}","service":"request-logging"}
+{"level":"info","message":"/api/product - {\"name\":\"Amazone kindle\",\"price\":50000,\"desc\":\"E-book reader by Amazone\",\"categories\":[\"663c9db77e59628304c6fcf4\",\"663c9db77e59628304c6fcf6\"]}","service":"request-logging"}
+{"level":"info","message":"/api/like - {}","service":"request-logging"}
+{"level":"info","message":"/api/like - {\"type\":\"Product\",\"id\":\"663cb84e88c8bfd453090b85\"}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663cb84e88c8bfd453090b85&type=Product - {}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663cb84e88c8bfd453090b85&type=Product - {}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663cb84e88c8bfd453090b85&type=Product - {}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663cb84e88c8bfd453090b85&type=Product - {}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663cb84e88c8bfd453090b85&type=Products - {}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663ce44478e196371b78305d&type=Products - {\"type\":\"Product\",\"id\":\"663cb84e88c8bfd453090b85\"}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663ce44478e196371b78305d&type=Products - {\"type\":\"Product\",\"id\":\"663cb84e88c8bfd453090b85\"}","service":"request-logging"}
+{"level":"info","message":"/api/users/signup - {\"name\":\"Nilesh Patil\",\"email\":\"Nilesh093@gmail.com\",\"password\":\"Nilesh@123\",\"type\":\"Seller\"}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663ce44478e196371b78305d&type=Products - {\"type\":\"Product\",\"id\":\"663cb84e88c8bfd453090b85\"}","service":"request-logging"}
+{"level":"info","message":"/api/like?id=663ce44478e196371b78305d&type=Products - {}","service":"request-logging"}
+{"level":"info","message":"/api/product - {\"name\":\"Amazone kindle\",\"price\":50000,\"desc\":\"E-book reader by Amazone\",\"categories\":[\"663c9db77e59628304c6fcf4\",\"663c9db77e59628304c6fcf6\"]}","service":"request-logging"}
+{"level":"info","message":"/api/product - {\"name\":\"Amazone kindle\",\"price\":50000,\"desc\":\"E-book reader by Amazone\",\"categories\":[\"663c9db77e59628304c6fcf4\",\"663c9db77e59628304c6fcf6\"]}","service":"request-logging"}

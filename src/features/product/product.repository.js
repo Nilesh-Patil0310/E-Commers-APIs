@@ -1,37 +1,18 @@
 import { getDB } from "../../config/mongodb.js";
 import { ObjectId } from "mongodb";
 import { ApplicationError } from "../../error-handler/application.error.js";
-import mongoose from "mongoose";
-import { productSchema } from "./product.Schema.js";
-import { reviewSchema } from "./review.Schema.js";
-import { categorySchema } from "./categotySchema.js";
-
-
-const ProductModel = mongoose.model("product", productSchema);
-const ReviewModel = mongoose.model("review", reviewSchema);
-const CategoryModel = mongoose.model('category', categorySchema)
 
 class ProductRepository {
   constructor() {
     this.collection = "products";
   }
-  async add(productData) {
+  async add(newProduct) {
     try {
-      // 1. add the product
-      productData.categories = productData.category.map(e=> e.trim());
-      console.log(productData);
-      const newProduct = await ProductModel(productData);
-      const saveProdut = await newProduct.save();
-
-      // 2. update categories
-      await CategoryModel.updateMany(
-        {_id:{$in:productData.categories}},
-        {
-          $push:{products: new ObjectId(saveProdut._id)}
-        }
-      )
-
-      
+      // 1. get the db and collection
+      const db = getDB();
+      const collection = db.collection(this.collection);
+      await collection.insertOne(newProduct);
+      return newProduct;
     } catch (err) {
       console.log(err);
       throw new ApplicationError("Something went wrong", 500);
@@ -128,26 +109,27 @@ class ProductRepository {
 
   async rate(userID, productID, rating) {
     try {
-      // 1. check if product exist
-      const productToUpdate = await ProductModel.findById(productID);
-      if (!productToUpdate) {
-        throw new Error("Product not found");
-      }
-      const userReview = await ReviewModel.findOne({
-        product: new ObjectId(productID),
-        user: new ObjectId(userID),
-      });
-      if (userReview) {
-        userReview.rating = rating;
-        await userReview.save();
-      } else {
-        const newReview = new ReviewModel({
-          product: new ObjectId(productID),
-          user: new ObjectId(userID),
-          rating:rating
-        })
-        newReview.save();
-      }
+      const db = getDB();
+      const collection = db.collection(this.collection);
+      // remove esisting entry
+      await collection.updateOne(
+        {
+          _id: new ObjectId(productID),
+        },
+        {
+          $pull: { ratings: { userID: new ObjectId(userID) } },
+        }
+      );
+
+      //   add new entry
+      await collection.updateOne(
+        {
+          _id: new ObjectId(productID),
+        },
+        {
+          $push: { ratings: { userID: new ObjectId(userID), rating } },
+        }
+      );
     } catch (err) {
       console.log(err);
       throw new ApplicationError("Something went wrong with database", 500);

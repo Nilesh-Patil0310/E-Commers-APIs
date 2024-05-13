@@ -15,6 +15,7 @@ import cors from "cors";
 import loggerMiddleware from "./src/middlwares/logger.middleware.js";
 import { ApplicationError } from "./src/error-handler/application.error.js";
 import {connectToMongoDB} from "./src/config/mongodb.js";
+import { connectUsingMongoose } from './src/config/mongoose.js';
 // 2. create server
 const server = express();
 
@@ -81,5 +82,6 @@ server.use((req, res) => {
 // 4. Specify port
 server.listen(3200, () => {
   console.log("Server is running at:3200");
-  connectToMongoDB();
+  // connectToMongoDB();
+  connectUsingMongoose();
 });

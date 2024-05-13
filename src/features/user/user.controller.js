@@ -1,48 +1,75 @@
 import UserModel from "./user.model.js";
 import jwt from "jsonwebtoken";
-import UserRepository from "./user.repository.js";
+import UserRepository from "./user.repositoryNew.js";
 import bcrypt from "bcrypt";
 
 export default class UserController {
   constructor() {
-    this.userRespository = new UserRepository();
+    this.userRepository = new UserRepository();
   }
 
-  async signUp(req, res) {
-    try{
-    const { name, email, password, type } = req.body;
-    const hashPassward = await bcrypt.hash(password, 8);
-    const user = new UserModel(name, email, hashPassward, type);
-    await this.userRespository.signUp(user);
-    res.status(201).send(user);
-    }catch (err) {
+  async resetPassword(req, res,next) {
+    const {newPassword} = req.body;
+    const hashedPassword = await bcrypt.hash(newPassword, 12);
+    const userID = req.userID;
+    try {
+      await this.userRepository.resetPassword(userID, hashedPassword)
+      res.status(200).send("Password is updated");
+    } catch(err){
       console.log(err);
-      return res.status(400).send("something went wrong");
+      console.log("Passing error to middleware");
+      next(err);
     }
   }
 
-  async signIn(req, res) {
+  async signUp(req, res) {
+    const { name, email, password, type } = req.body;
     try {
-      // find user by email
-      const user = await this.userRespository.findByEmail(req.body.email);
+      const hashedPassword = await bcrypt.hash(password, 12);
+      const user = new UserModel(name, email, hashedPassword, type);
+      await this.userRepository.signUp(user);
+      res.status(201).send(user);
+    } catch (err) {
+      console.log(err);
+      return res.status(200).send("Something went wrong");
+    }
+  }
+
+  // async resetPassword(req, res) {
+  //   const { newPassword } = req.body;
+  //   const hashedPassword = await bcrypt.hash(newPassword, 12);
+  //   const userID = req.userID;
+
+  //   try {
+  //     await this.userRepository.resetPassword(userID, hashedPassword);
+  //   } catch (err) {
+  //     console.log(err);
+  //     return res.status(200).send("Something went wrong");
+  //   }
+  // }
+
+  async signIn(req, res, next) {
+    try {
+      // 1. Find user by email.
+      const user = await this.userRepository.findByEmail(req.body.email);
       if (!user) {
         return res.status(400).send("Incorrect Credentials");
       } else {
-        //  compare passaword with hash password
+        // 2. Compare password with hashed password.
         const result = await bcrypt.compare(req.body.password, user.password);
         if (result) {
-          // create jwt token
+          // 3. Create token.
           const token = jwt.sign(
             {
               userID: user._id,
               email: user.email,
             },
-            process.env.JWT_SECRET,
+            "IPO2fWYvk70Y3G2ZJc01ICXcWIQeSw21",
             {
               expiresIn: "1h",
             }
           );
-          //   send token to the client
+          // 4. Send token.
           return res.status(200).send(token);
         } else {
           return res.status(400).send("Incorrect Credentials");
@@ -50,7 +77,7 @@ export default class UserController {
       }
     } catch (err) {
       console.log(err);
-      return res.status(400).send("something went wrong");
+      return res.status(200).send("Something went wrong");
     }
   }
 }
